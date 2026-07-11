@@ -9,7 +9,6 @@ backend:
   auth_token_endpoint: /sites/56fd4228-6099-40f4-a32d-58c26f9aa285/token
   gateway_url: https://gateway.decapbridge.com
 
-  # See who did what (optional)
   commit_messages:
     create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
     update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
@@ -22,6 +21,72 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "site_design"
+    label: "Site Design (Logo, Colors, Fonts)"
+    files:
+      - name: "theme"
+        label: "Colors & Fonts"
+        file: "theme.json"
+        format: "json"
+        fields:
+          - name: "color_theme"
+            label: "Color Theme"
+            widget: "select"
+            hint: "Each option is a matched set of background/text/accent colors, chosen so text always stays readable."
+            options: ["Midnight Gold", "Charcoal Rose", "Ink Navy", "Espresso Gold", "Ivory Light"]
+          - name: "heading_font"
+            label: "Heading Font"
+            widget: "select"
+            hint: "Used for all titles and headlines across the site."
+            options: ["Cormorant Garamond", "Playfair Display", "Marcellus", "EB Garamond"]
+          - name: "body_font"
+            label: "Body Text Font"
+            widget: "select"
+            hint: "Used for all paragraph and button text across the site."
+            options: ["Inter", "Jost", "Work Sans", "Poppins"]
+
+      - name: "content"
+        label: "Logo & Site Text"
+        file: "content.json"
+        format: "json"
+        fields:
+          - name: "site_logo"
+            label: "Logo Image"
+            widget: "image"
+            required: false
+            hint: "Upload a logo to replace the text wordmark in the header and footer. Leave empty to keep the text version below."
+          - name: "site_name"
+            label: "Text Wordmark (used if no logo is uploaded)"
+            widget: "string"
+          - name: "hero_eyebrow"
+            label: "Homepage — Small line above the headline"
+            widget: "string"
+          - name: "hero_headline"
+            label: "Homepage — Main Headline"
+            widget: "text"
+            hint: "Press Enter for a line break."
+          - name: "hero_subtext"
+            label: "Homepage — Paragraph under the headline"
+            widget: "text"
+          - name: "atelier_heading"
+            label: "\"House Architecture\" section — Heading"
+            widget: "string"
+          - name: "atelier_paragraph"
+            label: "\"House Architecture\" section — Paragraph"
+            widget: "text"
+          - name: "private_heading"
+            label: "\"Salon Privé\" section — Heading"
+            widget: "string"
+          - name: "private_paragraph"
+            label: "\"Salon Privé\" section — Paragraph"
+            widget: "text"
+          - name: "footer_tagline"
+            label: "Footer — Tagline under the logo"
+            widget: "string"
+          - name: "footer_copyright"
+            label: "Footer — Bottom copyright line"
+            widget: "string"
+
   - name: "categories"
     label: "Categories"
     files:
@@ -98,17 +163,17 @@ collections:
                 required: false
 
   - name: "media_library"
-    label: "General Media"
+    label: "Homepage Photos"
     files:
       - name: "hero_media"
-        label: "Homepage Hero & Lookbook"
+        label: "Hero Slideshow & Lookbook Photos"
         file: "media.json"
         format: "json"
         fields:
           - name: "hero_slides"
             label: "Hero Slideshow Photos"
             widget: "list"
-            hint: "Upload one or more photos to auto-slide behind the homepage headline. Leave empty to keep the default dark gradient background."
+            hint: "Upload one or more photos to auto-slide behind the homepage headline. Leave empty to keep the current gradient background."
             field:
               name: "src"
               label: "Photo"
@@ -126,6 +191,6 @@ collections:
             widget: "image"
             required: false
           - name: "atelier_visual"
-            label: "'The House Architecture' Section Image"
+            label: "'House Architecture' Section Image"
             widget: "image"
             required: false

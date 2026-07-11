@@ -6,9 +6,11 @@
 <title>AURÈLE — Haute Couture, Collection XII</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400\&family=Playfair+Display:ital,wght@0,400;0,500;1,400\&family=Marcellus\&family=EB+Garamond:ital@0;1\&family=Inter:wght@200;300;400;500\&family=Jost:wght@300;400\&family=Work+Sans:wght@300;400\&family=Poppins:wght@300;400\&family=Space+Mono\&display=swap" rel="stylesheet">
 <style>
   :root{
+    --font-heading:'Cormorant Garamond',serif;
+    --font-body:'Inter',sans-serif;
     --ink:#0A0A0A;
     --panel:#121212;
     --panel-2:#1A1A1A;
@@ -23,13 +25,13 @@
   html{scroll-behavior:smooth;}
   body{
     background:var(--ink); color:var(--bone);
-    font-family:'Inter', sans-serif; font-weight:200;
+    font-family:var(--font-body); font-weight:200;
     line-height:1.7; letter-spacing:0.3px;
     cursor:none;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,.logotype{font-family:'Cormorant Garamond', serif; font-weight:300;}
+  h1,h2,h3,.logotype{font-family:var(--font-heading); font-weight:300;}
   .mono{font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;}
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
@@ -329,7 +331,7 @@
 
 <header>
   <div class="nav wrap">
-    <div class="logotype">Aurèle</div>
+    <div class="logotype" id="site-logo-slot">Aurèle</div>
     <nav class="nav-links">
       <a href="#collection">Collection</a>
       <a href="#atelier">The Atelier</a>
@@ -343,9 +345,9 @@
   <div class="hero-slider" id="hero-slider"></div>
   <div class="hero-numeral">XII</div>
   <div class="hero-inner">
-    <div class="hero-eyebrow"><span class="rule"></span>Haute Couture · Édition No. XII</div>
+    <div class="hero-eyebrow" id="hero-eyebrow"><span class="rule"></span>Haute Couture · Édition No. XII</div>
     <h1 id="hero-headline" style="visibility:hidden;">Quiet luxury,<br>built to outlast <span class="italic">generations.</span></h1>
-    <p>Aurèle operates in strict exclusivity with historic European master-ateliers—redefining contemporary heirloom clothing through meticulously sourced natural fibers and generational craftsmanship.</p>
+    <p id="hero-subtext">Aurèle operates in strict exclusivity with historic European master-ateliers—redefining contemporary heirloom clothing through meticulously sourced natural fibers and generational craftsmanship.</p>
     <div class="hero-ctas">
       <span class="magnetic" data-magnetic><a href="#collection" class="btn-primary">Explore Edition XII</a></span>
       <span class="magnetic" data-magnetic><a href="#private" class="btn-ghost">Request Private Fitting</a></span>
@@ -403,8 +405,8 @@
     </div>
     <div class="reveal">
       <div class="numeral" style="color:var(--gold); font-family:'Space Mono'; margin-bottom:24px; display:block; font-size:0.7rem; letter-spacing:3px;">CHAPITRE II</div>
-      <h2>Sculpted through time, untethered by trends.</h2>
-      <p>Every dynamic curve and precision baseline is generated fully in-house, balancing centuries-old drafting discipline with refined modern architectural lines.</p>
+      <h2 id="atelier-heading">Sculpted through time, untethered by trends.</h2>
+      <p id="atelier-para1">Every dynamic curve and precision baseline is generated fully in-house, balancing centuries-old drafting discipline with refined modern architectural lines.</p>
       <div class="stat-row">
         <div class="stat"><h3>&lt;150</h3><p>Bespoke Outputs</p></div>
         <div class="stat"><h3>4</h3><p>Seasonal Volumes</p></div>
@@ -418,8 +420,8 @@
 
 <section class="private" id="private">
   <span class="numeral">CHAPITRE III</span>
-  <h2 class="reveal">Salon Privé Consultation & Global Concierge</h2>
-  <p class="reveal">Schedule a private digital presentation or an intimate suite fitting with our chief pattern cutter.</p>
+  <h2 class="reveal" id="private-heading">Salon Privé Consultation & Global Concierge</h2>
+  <p class="reveal" id="private-para">Schedule a private digital presentation or an intimate suite fitting with our chief pattern cutter.</p>
   <a href="mailto:concierge@aurele.luxury" class="btn-primary reveal">Inquire for Entry</a>
 </section>
 
@@ -427,8 +429,8 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col">
-        <div class="foot-logotype">Aurèle</div>
-        <p>Maison de Couture, Paris – Milan – Tokyo. All rights reserved.</p>
+        <div class="foot-logotype" id="foot-logo-slot">Aurèle</div>
+        <p id="footer-tagline">Maison de Couture, Paris – Milan – Tokyo. All rights reserved.</p>
       </div>
       <div class="foot-col">
         <h4>Communications</h4>
@@ -450,12 +452,13 @@
       </div>
     </div>
     <div class="foot-bottom wrap">
-      <span>© 2026 Aurèle International S.A. Crafted with absolute devotion.</span>
+      <span id="footer-copyright">© 2026 Aurèle International S.A. Crafted with absolute devotion.</span>
       <span>Terminal System Access</span>
     </div>
   </div>
 </footer>
 
+<script src="/assets/theme.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
   window.addEventListener('load', () => {
@@ -495,7 +498,9 @@
     });
     el.style.visibility = 'visible';
   }
-  splitIntoWords(document.getElementById('hero-headline'));
+  applyThemeAndContent().then(() => {
+    splitIntoWords(document.getElementById('hero-headline'));
+  });
 
   try {
     const lenis = new Lenis({ duration: 1.3, smoothWheel: true });
@@ -540,13 +545,13 @@
     const grid = document.getElementById('product-grid');
     grid.innerHTML = window.PRODUCTS.map((p,i) => `
       <div class="piece reveal" style="transition-delay:${i*50}ms">
-        <a href="/product/${p.id}" class="piece-media">
+        <a href="/product.html?id=${p.id}" class="piece-media">
           ${mediaHTML(p)}
           <span class="piece-roman">${p.roman}</span>
         </a>
         <div class="piece-body">
-          <a href="/category/${p.cat}" class="piece-cat">${categoryName(p.cat)}</a>
-          <a href="/product/${p.id}" class="piece-title">${p.name}</a>
+          <a href="/category.html?cat=${p.cat}" class="piece-cat">${categoryName(p.cat)}</a>
+          <a href="/product.html?id=${p.id}" class="piece-title">${p.name}</a>
           <div class="piece-price">$${p.price.toLocaleString()} USD</div>
           <button class="add-btn" onclick="addToCart(${p.id})">Add to Selection</button>
         </div>

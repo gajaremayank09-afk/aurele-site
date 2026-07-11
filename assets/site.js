@@ -58,7 +58,7 @@ async function renderCategoryNav(containerId, activeCatId) {
     window.CATEGORIES = (data && data.categories) || [];
   }
   el.innerHTML = window.CATEGORIES.map(c => `
-    <a href="/category/${c.id}" class="cat-pill${c.id === activeCatId ? ' active' : ''}">${c.name}</a>
+    <a href="/category.html?cat=${c.id}" class="cat-pill${c.id === activeCatId ? ' active' : ''}">${c.name}</a>
   `).join('');
 }
 

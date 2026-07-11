@@ -1,9 +1,0 @@
-{
-  "name": "aurele",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Aurèle — private workshop storefront",
-  "dependencies": {
-    "stripe": "^16.0.0"
-  }
-}

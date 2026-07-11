@@ -1,13 +1,13 @@
 {
-  "site_logo": "",
   "site_name": "Aurèle",
-  "hero_eyebrow": "Haute Couture · Édition No. XII",
-  "hero_headline": "Quiet luxury,\nbuilt to outlast generations.",
+  "footer_copyright": "© 2026 Aurèle International S.A. Crafted with absolute devotion.",
+  "site_logo": "",
+  "hero_eyebrow": "Exclusive Clothmaking· Édition No. XII",
+  "private_heading": "CLOTHES",
   "hero_subtext": "Aurèle operates in strict exclusivity with historic European master-ateliers—redefining contemporary heirloom clothing through meticulously sourced natural fibers and generational craftsmanship.",
-  "atelier_heading": "Sculpted through time, untethered by trends.",
-  "atelier_paragraph": "Every dynamic curve and precision baseline is generated fully in-house, balancing centuries-old drafting discipline with refined modern architectural lines.",
-  "private_heading": "Salon Privé Consultation & Global Concierge",
-  "private_paragraph": "Schedule a private digital presentation or an intimate suite fitting with our chief pattern cutter.",
   "footer_tagline": "Maison de Couture, Paris – Milan – Tokyo. All rights reserved.",
-  "footer_copyright": "© 2026 Aurèle International S.A. Crafted with absolute devotion."
+  "atelier_paragraph": "Every dynamic curve and precision baseline is generated fully in-house, balancing centuries-old drafting discipline with refined modern architectural lines.",
+  "private_paragraph": "Exclusive clothes with fine handcrafted",
+  "hero_headline": "Quiet luxury,\nbuilt to outlast generations.",
+  "atelier_heading": "Sculpted through time, untethered by trends."
 }

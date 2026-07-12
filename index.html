@@ -4,9 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AURÈLE — Luxury Tailoring, Collection XII</title>
+<meta name="description" content="Aurèle is a private atelier working in strict exclusivity with historic European workshops, crafting heirloom-quality clothing from meticulously sourced natural fibers.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="/">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<!-- Open Graph / social preview — shown when this page is shared on social media or messaging apps -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AURÈLE — Luxury Tailoring, Collection XII">
+<meta property="og:description" content="Quiet luxury, built to outlast generations. Heirloom-quality clothing from historic European workshops.">
+<meta property="og:image" content="/images/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400\&family=Playfair+Display:ital,wght@0,400;0,500;1,400\&family=Marcellus\&family=EB+Garamond:ital@0;1\&family=Inter:wght@200;300;400;500\&family=Jost:wght@300;400\&family=Work+Sans:wght@300;400\&family=Poppins:wght@300;400\&family=Space+Mono\&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Marcellus&family=EB+Garamond:ital@0;1&family=Inter:wght@200;300;400;500&family=Jost:wght@300;400&family=Work+Sans:wght@300;400&family=Poppins:wght@300;400&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
   :root{
     --font-heading:'Cormorant Garamond',serif;
@@ -55,7 +67,17 @@
     border:1px solid rgba(212,175,55,0.2); pointer-events:none; z-index:300; transform:translate(-50%,-50%);
     transition:width 0.3s, height 0.3s, border-color 0.3s, transform 0.1s ease-out;
   }
-  .cursor-ring.hovered{width:60px; height:60px; border-color:var(--gold); background:rgba(212,175,55,0.03);}
+    .cursor-ring.hovered{width:60px; height:60px; border-color:var(--gold); background:rgba(212,175,55,0.03);}
+
+  /* Accessibility: keyboard focus stays visible even with the custom cursor enabled */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--gold); outline-offset:3px; border-radius:2px;
+  }
+  .skip-link{
+    position:absolute; left:-9999px; top:0; z-index:500; background:var(--gold); color:var(--ink);
+    padding:14px 24px; font-family:'Space Mono'; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; text-decoration:none;
+  }
+  .skip-link:focus{left:16px; top:16px;}
   @media (hover:none), (pointer:coarse){
     body{cursor:auto;}
     .cursor-dot, .cursor-ring{display:none;}
@@ -190,15 +212,17 @@
 
   /* Asymmetric Luxury Grid */
   .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:60px 40px;}
-  .piece{grid-column:span 4; background:transparent; display:flex; flex-direction:column; transition:transform 0.4s;}
+  .piece{grid-column:span 4; background:transparent; display:flex; flex-direction:column; transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);}
+  .piece:hover{transform:translateY(-6px);}
   /* Making layout feel couture and less template-like */
   .piece:nth-child(2n){grid-column:span 4; margin-top:80px;}
   .piece:nth-child(3n){grid-column:span 4; margin-top:40px;}
   
   .piece-media{
     aspect-ratio:3/4; position:relative; display:flex; align-items:center; justify-content:center;
-    overflow:hidden; background:#111;
+    overflow:hidden; background:#111; box-shadow:0 0 0 rgba(0,0,0,0); transition:box-shadow 0.5s ease;
   }
+  .piece:hover .piece-media{box-shadow:0 30px 60px -20px rgba(0,0,0,0.55);}
   .piece-media::after{
     content:''; position:absolute; inset:0; border:1px solid var(--gold); opacity:0; transition:opacity 0.4s, inset 0.4s; pointer-events:none; z-index:3;
   }
@@ -217,14 +241,29 @@
   .piece-body{padding:30px 0 0 0; flex:1; display:flex; flex-direction:column; gap:12px;}
   .piece-cat{font-family:'Space Mono'; font-size:0.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); opacity:0.8;}
   .piece-title{font-family:'Cormorant Garamond'; font-size:1.8rem; font-weight:300; color:var(--bone);}
-  .piece-price{font-family:'Inter'; font-size:0.95rem; font-weight:300; letter-spacing:1px; color:var(--bone-dim);}
+    .piece-price{font-family:'Inter'; font-size:0.95rem; font-weight:300; letter-spacing:1px; color:var(--bone-dim);}
+
+  /* --- Loading skeletons: shown briefly while product/category data fetches --- */
+  .skeleton-shimmer{
+    position:relative; overflow:hidden; background:var(--panel);
+  }
+  .skeleton-shimmer::after{
+    content:''; position:absolute; inset:0; transform:translateX(-100%);
+    background:linear-gradient(90deg, transparent, rgba(245,242,235,0.06), transparent);
+    animation:shimmer 1.6s infinite;
+  }
+  @keyframes shimmer{100%{transform:translateX(100%);}}
+  .skeleton-card{pointer-events:none;}
+  .skeleton-line{border-radius:2px;}
+  .empty-cat{color:var(--bone-dim); font-family:'Cormorant Garamond'; font-style:italic; font-size:1.4rem; padding:80px 0; text-align:center; grid-column:1/-1;}
   
   .add-btn{
     margin-top:10px; width:fit-content; padding:8px 0; border:none; background:transparent;
     color:var(--bone); font-family:'Space Mono'; font-size:0.65rem; letter-spacing:2px; text-transform:uppercase;
-    cursor:none; transition:color 0.3s; border-bottom:1px solid var(--line);
+    cursor:none; transition:color 0.3s, letter-spacing 0.3s; border-bottom:1px solid var(--line);
   }
-  .add-btn:hover{color:var(--gold); border-color:var(--gold);}
+  .add-btn:hover{color:var(--gold); border-color:var(--gold); letter-spacing:2.5px;}
+  .add-btn:active{transform:scale(0.97);}
 
   /* Diptych Full Bleed Lookbook */
   .lookbook{
@@ -305,7 +344,9 @@
     width:100%; background:var(--bone); color:var(--ink); border:1px solid var(--bone); padding:20px;
     font-family:'Space Mono'; font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; cursor:none; transition:all 0.3s;
   }
-  .checkout-btn:hover{background:transparent; color:var(--gold); border-color:var(--gold);}
+  .checkout-btn:hover{background:transparent; color:var(--gold); border-color:var(--gold); box-shadow:0 8px 24px -8px rgba(212,175,55,0.35);}
+  .checkout-btn:active{transform:scale(0.98);}
+  .checkout-btn:disabled{opacity:0.5; cursor:not-allowed;}
   .empty-note{color:var(--bone-dim); font-size:1rem; padding:60px 0; text-align:center; font-family:'Cormorant Garamond'; font-style:italic;}
 
   @media (max-width:1024px){
@@ -323,6 +364,7 @@
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div id="preloader"><div class="logotype">AURÈLE</div></div>
 
@@ -340,8 +382,9 @@
     <button class="cart-btn" onclick="openCart()">Your Selection (<span id="cart-count">0</span>)</button>
   </div>
 </header>
+<main>
 
-<section class="hero">
+<section class="hero" id="main-content">
   <div class="hero-slider" id="hero-slider"></div>
   <div class="hero-numeral">XII</div>
   <div class="hero-inner">
@@ -374,7 +417,7 @@
       </div>
       <p>An edit of bespoke silhouettes curated for absolute distinction. Tailored precisely upon request.</p>
     </div>
-    <div class="grid" id="product-grid"></div>
+    <div class="grid" id="product-grid"><div class="piece skeleton-card"><div class="piece-media skeleton-shimmer"></div><div class="piece-body"><div class="skeleton-line skeleton-shimmer" style="width:40%;height:11px;"></div><div class="skeleton-line skeleton-shimmer" style="width:80%;height:20px;margin-top:8px;"></div><div class="skeleton-line skeleton-shimmer" style="width:30%;height:14px;margin-top:8px;"></div></div></div><div class="piece skeleton-card"><div class="piece-media skeleton-shimmer"></div><div class="piece-body"><div class="skeleton-line skeleton-shimmer" style="width:40%;height:11px;"></div><div class="skeleton-line skeleton-shimmer" style="width:80%;height:20px;margin-top:8px;"></div><div class="skeleton-line skeleton-shimmer" style="width:30%;height:14px;margin-top:8px;"></div></div></div><div class="piece skeleton-card"><div class="piece-media skeleton-shimmer"></div><div class="piece-body"><div class="skeleton-line skeleton-shimmer" style="width:40%;height:11px;"></div><div class="skeleton-line skeleton-shimmer" style="width:80%;height:20px;margin-top:8px;"></div><div class="skeleton-line skeleton-shimmer" style="width:30%;height:14px;margin-top:8px;"></div></div></div><div class="piece skeleton-card"><div class="piece-media skeleton-shimmer"></div><div class="piece-body"><div class="skeleton-line skeleton-shimmer" style="width:40%;height:11px;"></div><div class="skeleton-line skeleton-shimmer" style="width:80%;height:20px;margin-top:8px;"></div><div class="skeleton-line skeleton-shimmer" style="width:30%;height:14px;margin-top:8px;"></div></div></div><div class="piece skeleton-card"><div class="piece-media skeleton-shimmer"></div><div class="piece-body"><div class="skeleton-line skeleton-shimmer" style="width:40%;height:11px;"></div><div class="skeleton-line skeleton-shimmer" style="width:80%;height:20px;margin-top:8px;"></div><div class="skeleton-line skeleton-shimmer" style="width:30%;height:14px;margin-top:8px;"></div></div></div><div class="piece skeleton-card"><div class="piece-media skeleton-shimmer"></div><div class="piece-body"><div class="skeleton-line skeleton-shimmer" style="width:40%;height:11px;"></div><div class="skeleton-line skeleton-shimmer" style="width:80%;height:20px;margin-top:8px;"></div><div class="skeleton-line skeleton-shimmer" style="width:30%;height:14px;margin-top:8px;"></div></div></div></div>
   </div>
 </section>
 
@@ -425,6 +468,7 @@
   <a href="mailto:contact@aurele.luxury" class="btn-primary reveal">Inquire for Entry</a>
 </section>
 
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -580,6 +624,14 @@
       loadJSON('/categories.json'),
       loadJSON('/media.json')
     ]);
+
+    // Distinguish "genuinely no products" from "the fetch actually failed" —
+    // the person should see a retry option for the latter, not an empty shelf.
+    if (productData === null) {
+      renderLoadError();
+      return;
+    }
+
     window.PRODUCTS = (productData && productData.products) || [];
     window.CATEGORIES = (catData && catData.categories) || [];
     renderProducts();
@@ -589,6 +641,15 @@
       renderHeroSlider(mediaData.hero_slides);
       applyStaticImages(mediaData);
     }
+  }
+
+  function renderLoadError(){
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = `
+      <div class="empty-cat">
+        Couldn't load the collection right now.<br>
+        <button class="add-btn" style="margin:20px auto 0;" onclick="loadProducts()">Try Again</button>
+      </div>`;
   }
 
   const dot = document.getElementById('cursor-dot');

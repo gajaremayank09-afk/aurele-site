@@ -4,9 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">Piece — AURÈLE</title>
+<meta name="description" content="Discover this piece from the Aurèle collection — heirloom-quality craftsmanship from historic European workshops.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<meta property="og:type" content="product">
+<meta property="og:image" content="/images/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400\&family=Playfair+Display:ital,wght@0,400;0,500;1,400\&family=Marcellus\&family=EB+Garamond:ital@0;1\&family=Inter:wght@200;300;400;500\&family=Jost:wght@300;400\&family=Work+Sans:wght@300;400\&family=Poppins:wght@300;400\&family=Space+Mono\&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Marcellus&family=EB+Garamond:ital@0;1&family=Inter:wght@200;300;400;500&family=Jost:wght@300;400&family=Work+Sans:wght@300;400&family=Poppins:wght@300;400&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
   :root{
     --font-heading:'Cormorant Garamond',serif;
@@ -28,7 +36,17 @@
 
   .cursor-dot{position:fixed; top:0; left:0; width:6px; height:6px; border-radius:50%; background:var(--gold); pointer-events:none; z-index:300; transform:translate(-50%,-50%); transition:width 0.2s, height 0.2s, background 0.2s;}
   .cursor-ring{position:fixed; top:0; left:0; width:40px; height:40px; border-radius:50%; border:1px solid rgba(212,175,55,0.2); pointer-events:none; z-index:300; transform:translate(-50%,-50%); transition:width 0.3s, height 0.3s, border-color 0.3s, transform 0.1s ease-out;}
-  .cursor-ring.hovered{width:60px; height:60px; border-color:var(--gold); background:rgba(212,175,55,0.03);}
+    .cursor-ring.hovered{width:60px; height:60px; border-color:var(--gold); background:rgba(212,175,55,0.03);}
+
+  /* Accessibility: keyboard focus stays visible even with the custom cursor enabled */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--gold); outline-offset:3px; border-radius:2px;
+  }
+  .skip-link{
+    position:absolute; left:-9999px; top:0; z-index:500; background:var(--gold); color:var(--ink);
+    padding:14px 24px; font-family:'Space Mono'; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; text-decoration:none;
+  }
+  .skip-link:focus{left:16px; top:16px;}
   @media (hover:none), (pointer:coarse){ body{cursor:auto;} .cursor-dot, .cursor-ring{display:none;} }
 
   header{position:sticky; top:0; z-index:60; background:rgba(10,10,10,0.75); backdrop-filter:blur(20px); border-bottom:1px solid var(--line);}
@@ -82,7 +100,8 @@
     width:100%; max-width:420px; background:var(--bone); color:var(--ink); border:1px solid var(--bone); padding:20px;
     font-family:'Space Mono'; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; cursor:none; transition:all 0.3s;
   }
-  .add-btn-lg:hover{background:transparent; color:var(--gold); border-color:var(--gold);}
+  .add-btn-lg:hover{background:transparent; color:var(--gold); border-color:var(--gold); box-shadow:0 8px 24px -8px rgba(212,175,55,0.35);}
+  .add-btn-lg:active{transform:scale(0.98);}
 
   .detail-list{margin-top:50px; border-top:1px solid var(--line); padding-top:30px; max-width:480px;}
   .detail-list div{display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); font-size:0.9rem; color:var(--bone-dim);}
@@ -116,6 +135,8 @@
   .drawer-foot{padding:40px; border-top:1px solid var(--line); background:var(--panel);}
   .drawer-total{display:flex; justify-content:space-between; font-family:'Cormorant Garamond'; font-size:1.5rem; margin-bottom:30px;}
   .checkout-btn{width:100%; background:var(--bone); color:var(--ink); border:1px solid var(--bone); padding:20px; font-family:'Space Mono'; font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; cursor:none; transition:all 0.3s;}
+  .checkout-btn:active{transform:scale(0.98);}
+  .checkout-btn:disabled{opacity:0.5; cursor:not-allowed;}
   .checkout-btn:hover{background:transparent; color:var(--gold); border-color:var(--gold);}
   .empty-note{color:var(--bone-dim); font-size:1rem; padding:60px 0; text-align:center; font-family:'Cormorant Garamond'; font-style:italic;}
 
@@ -130,6 +151,7 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="cursor-dot" id="cursor-dot"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
 
@@ -144,16 +166,17 @@
     <button class="cart-btn" onclick="openCart()">Your Selection (<span id="cart-count">0</span>)</button>
   </div>
 </header>
+<main>
 
 <div class="breadcrumb">
   <a href="/">Home</a> / <a href="#" id="crumb-cat">Category</a> / <span id="crumb-name">Piece</span>
 </div>
 
-<div class="product-layout">
+<div class="product-layout" id="main-content">
   <div class="gallery">
     <div class="gallery-main" id="gallery-main">
-      <button class="gallery-arrow prev" onclick="galleryStep(-1)">‹</button>
-      <button class="gallery-arrow next" onclick="galleryStep(1)">›</button>
+      <button class="gallery-arrow prev" onclick="galleryStep(-1)" aria-label="Previous photo">‹</button>
+      <button class="gallery-arrow next" onclick="galleryStep(1)" aria-label="Next photo">›</button>
     </div>
     <div class="gallery-thumbs" id="gallery-thumbs"></div>
   </div>
@@ -166,9 +189,9 @@
 
     <div class="qty-row">
       <div class="qty-control">
-        <button onclick="stepQty(-1)">−</button>
+        <button onclick="stepQty(-1)" aria-label="Decrease quantity">−</button>
         <span id="pdp-qty">1</span>
-        <button onclick="stepQty(1)">+</button>
+        <button onclick="stepQty(1)" aria-label="Increase quantity">+</button>
       </div>
     </div>
     <button class="add-btn-lg" id="pdp-add-btn">Add to Selection</button>
@@ -182,6 +205,7 @@
   </div>
 </div>
 
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -223,7 +247,7 @@
   function renderGalleryMain(){
     const main = document.getElementById('gallery-main');
     const showArrows = galleryImages.length > 1
-      ? `<button class="gallery-arrow prev" onclick="galleryStep(-1)">‹</button><button class="gallery-arrow next" onclick="galleryStep(1)">›</button>`
+      ? `<button class="gallery-arrow prev" onclick="galleryStep(-1)" aria-label="Previous photo">‹</button><button class="gallery-arrow next" onclick="galleryStep(1)" aria-label="Next photo">›</button>`
       : '';
     const media = galleryImages.length
       ? `<img src="${galleryImages[galleryIndex]}" alt="${currentProduct.name}">`
@@ -289,6 +313,20 @@
     document.getElementById('prod-price').textContent = '$' + currentProduct.price.toLocaleString() + ' USD';
     document.getElementById('prod-desc').textContent = currentProduct.desc || '';
     document.title = currentProduct.name + ' — AURÈLE';
+
+    // Update meta tags per-product so each piece has its own SEO description and share preview
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && currentProduct.desc) metaDesc.setAttribute('content', currentProduct.desc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', currentProduct.name + ' — AURÈLE');
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', currentProduct.desc || '');
+    else if (currentProduct.desc) {
+      const m = document.createElement('meta');
+      m.setAttribute('property', 'og:description');
+      m.setAttribute('content', currentProduct.desc);
+      document.head.appendChild(m);
+    }
 
     document.getElementById('pdp-add-btn').onclick = () => addToCart(currentProduct.id, pdpQty);
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Replace YOUR-SITE-DOMAIN below with your real domain after deploying.
+     If you add more categories or products via the CMS, add their URLs here too
+     (e.g. /category.html?cat=your-new-category) for best search engine coverage. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/category.html?cat=manteaux</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/category.html?cat=robes</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/category.html?cat=maille</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/category.html?cat=tailleur</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/category.html?cat=accessoires</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/shipping.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/returns.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/privacy.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://YOUR-SITE-DOMAIN/terms.html</loc>
+    <priority>0.3</priority>
+  </url>
+</urlset>

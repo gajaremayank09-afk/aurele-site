@@ -1,10 +1,7 @@
 {
-  "hero_slides": [
-    "/images/uploads/photo_6237715054665076684_x.jpg",
-    "/images/uploads/photo_6237715054665076686_x.jpg"
-  ],
-  "hero_video": "/images/uploads/photo_6237715054665076685_x.jpg",
-  "lookbook_1": "/images/uploads/photo_6237715054665076687_x.jpg",
-  "lookbook_2": "/images/uploads/photo_6237715054665076685_x.jpg",
-  "atelier_visual": "/images/uploads/photo_6237715054665076688_x.jpg"
+  "hero_slides": [],
+  "hero_video": "",
+  "lookbook_1": "",
+  "lookbook_2": "",
+  "atelier_visual": ""
 }
